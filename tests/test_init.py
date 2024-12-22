@@ -142,5 +142,25 @@ class TestANSIField:
         ansi_field = ANSIField(input_text)
 
         assert ansi_field != random_obj
+    
+    def test_copy(self):
+        input_text = (
+            "Hello,\n"
+            "This is some classic text.\n"
+            "Enjoy!"
+        )
+        og_field = ANSIField(input_text)
+        cp_field = og_field.copy()
+
+        # Assert that they are equal but are not the same object
+        assert og_field == cp_field
+        assert og_field is not cp_field
+
+        # Now double check the same for the underlying raw field
+        # via way of manipulation.
+        cp_field.raw_field[0][0].append(36)
+
+        assert og_field != cp_field
+
 
 

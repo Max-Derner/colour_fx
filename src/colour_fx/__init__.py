@@ -38,8 +38,8 @@ class ANSIField:
         err_msg = F"Template is not valid. Reason:\n{err_reason}"
         raise TypeError(err_msg)
 
-    # def copy(self):
-    #     return ANSIField(self)
+    def copy(self):
+        return ANSIField(self)
 
     def __eq__(self, other) -> bool:
         # Check right type
