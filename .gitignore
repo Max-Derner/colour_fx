@@ -15,5 +15,5 @@ cfxenv
 # Don't upload a Pytest coverage report
 .coverage
 
-# For the love of safety DO NOT upload the debugenv, it a straight copy of all your env vars
+# For the love of safety DO NOT upload the debugenv, it's a straight copy of all your env vars
 .debugenv
