@@ -3,25 +3,26 @@
 setup-venv() {
     if [ -d 'cfxenv' ]; then
         echo "Venv already exists! Delete venv and try again!"
-        exit 1
+        return 1
     fi
     if [ -z $1 ]; then
         echo "Creating venv with $(python3 --version)"
         if ! python3 -m venv cfxenv; then
             echo "FAILED!"
-            exit 1
+            return 1
         fi
     else
         echo "Creating venv with python$1"
         if ! python"$1" -m venv cfxenv; then
             echo "FAILED!"
-            exit 1
+            return 1
         fi
     fi
 
     echo "Modifying activation script"
-    cat .env | sudo tee -a ./cfxenv/bin/activate
-    echo -e "\n. ./tooling" | sudo tee -a ./cfxenv/bin/activate
+    echo -e "\n\
+. ./tooling\n\
+set-env" | sudo tee -a ./cfxenv/bin/activate
     . cfxenv/bin/activate
     echo "Installing dependencies"
     pip install --upgrade pip
@@ -34,4 +35,10 @@ lint-cfx() {
 
 test-cfx() {
     pytest --cov-report term-missing --cov-fail-under=100 --cov=src $@
+}
+
+set-env() {
+    set -a
+    . .env
+    set +a
 }

@@ -1,0 +1,10 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "create debug env",
+            "type": "shell",
+            "command": "echo 'Creating debug environment'; . ./cfxenv/bin/activate; env > .debugenv"
+        },
+    ]
+}

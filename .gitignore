@@ -3,8 +3,8 @@
 # Shhh... code is sleeping in here
 zzz/
 
-# Keep IDE mess out of the project!
-.vscode
+# Keep IDE settings out of the project!
+.vscode/settings.json
 
 # Keep that outta the way!
 **/__pycache__
@@ -14,3 +14,6 @@ cfxenv
 
 # Don't upload a Pytest coverage report
 .coverage
+
+# For the love of safety DO NOT upload the debugenv, it a straight copy of all your env vars
+.debugenv
